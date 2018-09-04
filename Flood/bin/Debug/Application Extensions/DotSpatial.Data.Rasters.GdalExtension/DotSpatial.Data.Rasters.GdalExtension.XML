@@ -1,0 +1,1058 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotSpatial.Data.Rasters.GdalExtension</name>
+    </assembly>
+    <members>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalConfiguration">
+            <summary>
+            GDAL configuration.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalConfiguration.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalConfiguration.ConfigureOgr">
+            <summary>
+            Method to ensure the static constructor is being called.
+            </summary>
+            <remarks>Be sure to call this function before using Gdal/Ogr/Osr</remarks>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalConfiguration.ConfigureGdal">
+            <summary>
+            Method to ensure the static constructor is being called.
+            </summary>
+            <remarks>Be sure to call this function before using Gdal/Ogr/Osr</remarks>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalConfiguration.GetPlatform">
+            <summary>
+            Function to determine which platform we're on.
+            </summary>
+            <returns>The plattform string</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource">
+            <summary>
+            GDAL Image Source
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource"/> class, and gets much of the header information without actually
+            reading any values from the file.
+            </summary>
+            <param name="fileName">The file name.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource"/> class.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.Bounds">
+            <summary>
+            Gets or sets the bounds
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.Filename">
+            <summary>
+            Gets or sets the file name of the image source. If a relative path gets assigned it is changed to the absolute path including the file extension.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.NumColumns">
+            <summary>
+            Gets the total number of columns.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.NumOverviews">
+            <summary>
+            Gets the number of overviews, not counting the original image.
+            </summary>
+            <returns>The number of overviews.</returns>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.NumRows">
+            <summary>
+            Gets the number of rows
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.Close">
+            <summary>
+            Closes the data source.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.Dispose">
+            <summary>
+            Disposes the dataset.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.GetBitmap(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This returns the window of data as a bitmap.
+            </summary>
+            <param name="startRow">The zero based integer index of the first row (Y).</param>
+            <param name="startColumn">The zero based integer index of the first column (X).</param>
+            <param name="numRows">The number of rows to read.</param>
+            <param name="numColumns">The number of columns to read.</param>
+            <param name="overview">The integer overview.  0 for the original image.  Each successive index divides the length and height in half.  </param>
+            <returns>The bitmap representation for the specified portion of the raster.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.GetSizes">
+            <summary>
+            Gets the dimensions of the original (0) plus any overlays.
+            The overlays get smaller as the index gets larger.
+            </summary>
+            <returns>The sizes.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.ReadWindow(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+             Returns the data from the file in the form of ARGB bytes, regardless of how the image
+             data is actually stored in the file.
+            </summary>
+            <param name="startRow">The zero based integer index of the first row (Y)</param>
+            <param name="startColumn">The zero based integer index of the first column (X)</param>
+            <param name="numRows">The number of rows to read</param>
+            <param name="numColumns">The number of columns to read</param>
+            <param name="overview">The integer overview.  0 for the original image.  Each successive index divides the length and height in half.  </param>
+            <returns>A Byte of values in ARGB order and in row-major raster-scan sequence</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.ReadHeader">
+            <summary>
+            Gets the size of the whole image, but doesn't keep the image open unless it was already open.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageSource.ReadPaletteBuffered(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Returns ARGB 32 bpp regardless of the fact that the original is palette buffered.
+            </summary>
+            <param name="startRow">The start row.</param>
+            <param name="startColumn">The start column.</param>
+            <param name="numRows">The number of rows.</param>
+            <param name="numColumns">The number of columns.</param>
+            <param name="overview">The overview.</param>
+            <returns>The data that was read.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalTiledImage">
+            <summary>
+            A tiled image based on GDAL data.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalTiledImage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalTiledImage"/> class.
+            </summary>
+            <param name="fileName">The file name.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalTiledImage.Close">
+            <summary>
+            Closes the image
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalTiledImage.Open">
+            <summary>
+            Attempts to open the specified file.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalException">
+            <summary>
+            GDalException
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalException"/> class using Gdal.GetLastErrorMsg.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalImage">
+            <summary>
+            An image based on GDAL data.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalImage"/> class, and gets much of the header
+            information without actually reading any values from the file.
+            </summary>
+            <param name="fileName">File containing the GDAL image.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalImage"/> class.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.#ctor(System.String,OSGeo.GDAL.Dataset,DotSpatial.Data.ImageBandType)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalImage"/> class.
+            </summary>
+            <param name="fileName">File containing the GDAL image.</param>
+            <param name="ds">The dataset.</param>
+            <param name="band">The band type of the image.</param>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImage.IsOpened">
+            <summary>
+            Gets or sets a value indicating whether the file is open. This is a simliar to calling Open/Close methods.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.Close">
+            <inheritdoc />
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.CopyBitmapToValues">
+            <summary>
+            Reads the actual image values from the image file into the array
+            of Values, which can be accessed by the Color property.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.CopyValuesToBitmap">
+            <summary>
+            Writes the byte values stored in the Bytes array into the bitmap image.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.GetBitmap(DotSpatial.Data.Extent,System.Drawing.Rectangle)">
+            <summary>
+            This needs to return the actual image and override the base
+            behavior that handles the internal variables only.
+            </summary>
+            <param name="envelope">The envelope to grab image data for.</param>
+            <param name="window">A Rectangle</param>
+            <returns>The image.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.GetColorPalette">
+            <summary>
+            This is only used in the palette indexed band type.
+            </summary>
+            <returns>The color palette.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.Open">
+            <summary>
+            Attempts to open the specified file into memory.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.ReadBlock(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets a block of data directly, converted into a bitmap.  This always writes
+            to the base layer, not the overviews.
+            </summary>
+            <param name="xOffset">The zero based integer column offset from the left</param>
+            <param name="yOffset">The zero based integer row offset from the top</param>
+            <param name="xSize">The integer number of pixel columns in the block. </param>
+            <param name="ySize">The integer number of pixel rows in the block.</param>
+            <returns>A Bitmap that is xSize, ySize.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.SetColorPalette(System.Collections.Generic.IEnumerable{System.Drawing.Color})">
+            <summary>
+            This should update the palette cached and in the file.
+            </summary>
+            <param name="value">The color palette.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.WriteBlock(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            Saves a bitmap of data as a continuous block into the specified location.
+            This always writes to the base image, and not the overviews.
+            </summary>
+            <param name="value">The bitmap value to save.</param>
+            <param name="xOffset">The zero based integer column offset from the left</param>
+            <param name="yOffset">The zero based integer row offset from the top</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.Dispose(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.MatchColor(System.Byte[],System.Int32,System.Byte[][])">
+            <summary>
+            Finds the closest color in the table based on the hamming distance.
+            </summary>
+            <param name="vals">The values.</param>
+            <param name="offset">The offset</param>
+            <param name="colorTable">The color table.</param>
+            <returns>The closest color.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImage.ReadHeader">
+            <summary>
+            Gets the size of the whole image, but doesn't keep the image open
+            unless it was already open.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider">
+            <summary>
+            GDalImageProvider acts as the factory to create IImageData files that use the GDAL libraries
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.Description">
+            <summary>
+            Gets the description.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.DialogReadFilter">
+            <summary>
+            Gets the dialog read filter.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.DialogWriteFilter">
+            <summary>
+            Gets the dialog write filter.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.Name">
+            <summary>
+            Gets the string name.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.ProgressHandler">
+            <summary>
+            Gets or sets the progress handler.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.Create(System.String,System.Int32,System.Int32,System.Boolean,DotSpatial.Data.IProgressHandler,DotSpatial.Data.ImageBandType)">
+            <summary>
+            Creates a new image given the specified file format.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="inRam">if set to <c>true</c> should load entire file in ram.</param>
+            <param name="progHandler">The prog handler.</param>
+            <param name="bandType">Type of the band.</param>
+            <returns>The created image data.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.Open(System.String)">
+            <summary>
+            Opens an existing file using the specified parameters.
+            </summary>
+            <param name="fileName">The file name.</param>
+            <returns>The opened file as IImageData.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.DotSpatial#Data#IDataProvider#Open(System.String)">
+            <summary>
+            Opens an existing file using the specified parameters.
+            </summary>
+            <param name="fileName">The file name.</param>
+            <returns>The opened file as IDataSEt.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalImageProvider.GetDriverByExtension(System.String)">
+            <summary>
+            http://www.gdal.org/formats_list.html
+            </summary>
+            <param name="fileName">The file name.</param>
+            <returns>The driver.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1">
+            <summary>
+            A GDAL raster.
+            </summary>
+            <typeparam name="T">Type of the contained items.</typeparam>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.#ctor(System.String,OSGeo.GDAL.Dataset)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1"/> class.
+            This can be a raster with multiple bands.
+            </summary>
+            <param name="fileName">The file name.</param>
+            <param name="fromDataset">The dataset.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.#ctor(System.String,OSGeo.GDAL.Dataset,OSGeo.GDAL.Band)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1"/> class.
+            Creates a new raster from the specified band.
+            </summary>
+            <param name="fileName">The string path of the file if any.</param>
+            <param name="fromDataset">The dataset.</param>
+            <param name="fromBand">The band.</param>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.GdalDataType">
+            <summary>
+            Gets the GDAL data type.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.Maximum">
+            <summary>
+            Gets or sets the maximum.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.Mean">
+            <summary>
+            Gets or sets the mean.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.Minimum">
+            <summary>
+            Gets or sets the minimum.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.NoDataValue">
+            <summary>
+            Gets or sets the NoDataValue.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.StdDeviation">
+            <summary>
+            Gets or sets the standard deviation.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.CategoryColors">
+            <summary>
+            Gets the category colors.
+            </summary>
+            <returns>The category colors.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.CategoryNames">
+            <summary>
+            Gets the category names.
+            </summary>
+            <returns>The category names.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.Close">
+            <summary>
+            Closes the raster.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.Copy(System.String,System.Boolean)">
+            <summary>
+            Copies the fileName.
+            </summary>
+            <param name="fileName">The file name.</param>
+            <param name="copyValues">Indicates whether the values should be copied.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.GetStatistics">
+            <summary>
+            Gets the mean, standard deviation, minimum and maximum
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.GetValuesT(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            Most reading is optimized to read in a block at a time and process it. This method is designed
+            for seeking through the file.  It should work faster than the buffered methods in cases where
+            an unusually arranged collection of values are required.  Sorting the list before calling
+            this should significantly improve performance.
+            </summary>
+            <param name="indices">A list or array of long values that are (Row * NumRowsInFile + Column)</param>
+            <returns>The values.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.ReadRaster(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Reads values from the raster to the jagged array of values
+            </summary>
+            <param name="xOff">The horizontal offset from the left to start reading from</param>
+            <param name="yOff">The vertical offset from the top to start reading from</param>
+            <param name="sizeX">The number of cells to read horizontally</param>
+            <param name="sizeY">The number of cells ot read vertically</param>
+            <returns>A jagged array of values from the raster</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.WriteRaster(`0[][],System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Writes values from the jagged array to the raster at the specified location
+            </summary>
+            <param name="buffer">A jagged array of values to write to the raster</param>
+            <param name="xOff">The horizontal offset from the left to start reading from</param>
+            <param name="yOff">The vertical offset from the top to start reading from</param>
+            <param name="xSize">The number of cells to write horizontally</param>
+            <param name="ySize">The number of cells ot write vertically</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.UpdateHeader">
+            <summary>
+            Updates the header information about the projection and the affine coefficients
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRaster`1.GdalProgressFunc(System.Double,System.IntPtr,System.IntPtr)">
+            <summary>
+            Handles the callback progress content.
+            </summary>
+            <param name="complete">Percent of completeness.</param>
+            <param name="message">Message is not used.</param>
+            <param name="data">Data is not used.</param>
+            <returns>0</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider">
+            <summary>
+            GdalRasterProvider
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider"/> class.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.Description">
+            <summary>
+            Gets the description of the raster.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.DialogReadFilter">
+            <summary>
+            Gets the dialog filter to use when opening a file.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.DialogWriteFilter">
+            <summary>
+            Gets the dialog filter to use when saving to a file.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.Name">
+            <summary>
+            Gets the name of the provider.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.ProgressHandler">
+            <summary>
+            Gets or sets the progress handler that gets updated with progress information.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.Create(System.String,System.String,System.Int32,System.Int32,System.Int32,System.Type,System.String[])">
+            <summary>
+            This create new method implies that this provider has the priority for creating a new file.
+            An instance of the dataset should be created and then returned.  By this time, the fileName
+            will already be checked to see if it exists, and deleted if the user wants to overwrite it.
+            </summary>
+            <param name="name">The string fileName for the new instance.</param>
+            <param name="driverCode">The string short name of the driver for creating the raster.</param>
+            <param name="xSize">The number of columns in the raster.</param>
+            <param name="ySize">The number of rows in the raster.</param>
+            <param name="numBands">The number of bands to create in the raster.</param>
+            <param name="dataType">The data type to use for the raster.</param>
+            <param name="options">The options to be used.</param>
+            <returns>An IRaster</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.Open(System.String)">
+            <summary>
+            Opens the specified file.
+            </summary>
+            <param name="fileName">Name of the file that gets opened.</param>
+            <returns>The file as IRaster.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.GdalRasterProvider.DotSpatial#Data#IDataProvider#Open(System.String)">
+            <summary>
+            Opens the specified file.
+            </summary>
+            <param name="fileName">Name of the file that gets opened.</param>
+            <returns>The file as IDataSet.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.Helpers">
+            <summary>
+            Helper methods for GDAL.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.Helpers.Open(System.String)">
+            <summary>
+            Opens the given file.
+            </summary>
+            <param name="fileName">File that gets opened.</param>
+            <returns>Opened file as data set.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup">
+            <summary>
+            This layer can be used to add groups to the map that load themselves on deserialization.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup"/> class.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup"/> class.
+            </summary>
+            <param name="filePath">The path of the file that containes the layer data.</param>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.DataSet">
+            <summary>
+            Gets or sets the internal data set. This can be null, as in the cases of groups or map-frames.
+            Copying a layer should not create a duplicate of the dataset, but rather it should point to the
+            original dataset. The ShallowCopy attribute is used so even though the DataSet itself may be cloneable,
+            cloning a layer will treat the dataset like a shallow copy.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.Filename">
+            <summary>
+            Gets or sets the file name of a file based data set. The file name should be the absolute path including
+            the file extension. For data sets coming from a database or a web service, the Filename property is NULL.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.FilePath">
+            <summary>
+            Gets or sets the current file path. This is the relative path relative to the current project folder.
+            For data sets coming from a database or a web service, the FilePath property is NULL.
+            This property is used when saving source file information to a DSPX project.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.Layers">
+            <summary>
+            Gets or sets the collection of layers.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.LayerNames">
+            <summary>
+            Gets a list that contains the names of the layers in this group. This is used to load only those layers when deserializing a dspx file.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.UseStaticOpenMethod">
+            <summary>
+            Gets a value indicating whether the serializer should use the static open method or the constructor on deserializing the MapSelfLoadGroup.
+            Do not remove this. This is used to write the relevant informations to the dspx.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadGroup.Open(System.String,System.String[])">
+            <summary>
+            This static method is only meant to be used by the deserializer. It allows the deserializer to reload the group layer with the layers that were contained on serializing.
+            </summary>
+            <param name="filePath">Path of the file that contains the group that gets loaded.</param>
+            <param name="layerNames">The names of the layers that should be loaded.</param>
+            <returns>The opened group.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer">
+            <summary>
+            This MapLineLayer is able to load itself on deserialization even if the contained DataSet doesn't know how to load the file.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer.#ctor(DotSpatial.Data.IFeatureSet)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer"/> class.
+            </summary>
+            <param name="featureSet">The FeatureSet that contains the layers data.</param>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer.DataSet">
+            <summary>
+            Gets or sets the DataSet.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer.Filename">
+            <summary>
+            Gets or sets the file name of a file based data set. The file name should be the absolute path including
+            the file extension. For data sets coming from a database or a web service, the Filename property is NULL.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer.FilePath">
+            <summary>
+            Gets or sets the current file path. This is the relative path relative to the current project folder.
+            For data sets coming from a database or a web service, the FilePath property is NULL.
+            This property is used when saving source file information to a DSPX project.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer.UseStaticOpenMethod">
+            <summary>
+            Gets a value indicating whether the serializer should use the static open method or the constructor on deserializing the FeatureSet.
+            This should only be true if a FeatureSet was added to the Map. Shapefiles can be loaded via constructor. Do not remove this. This is used to write the relevant informations to the dspx.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadLineLayer.Open(System.String)">
+            <summary>
+            This static method is only meant to be used by the deserializer.
+            </summary>
+            <param name="filePath">Path of the file that contains the layer that gets loaded.</param>
+            <returns>The opened layer.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer">
+            <summary>
+            This MapPointLayer is able to load itself on deserialization even if the contained DataSet doesn't know how to load the file.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer.#ctor(DotSpatial.Data.IFeatureSet)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer"/> class.
+            </summary>
+            <param name="featureSet">The FeatureSet that contains the layers data.</param>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer.DataSet">
+            <summary>
+            Gets or sets the DataSet.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer.Filename">
+            <summary>
+            Gets or sets the file name of a file based data set. The file name should be the absolute path including
+            the file extension. For data sets coming from a database or a web service, the Filename property is NULL.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer.FilePath">
+            <summary>
+            Gets or sets the current file path. This is the relative path relative to the current project folder.
+            For data sets coming from a database or a web service, the FilePath property is NULL.
+            This property is used when saving source file information to a DSPX project.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer.UseStaticOpenMethod">
+            <summary>
+            Gets a value indicating whether the serializer should use the static open method or the constructor on deserializing the FeatureSet.
+            This should only be true if a FeatureSet was added to the Map. Shapefiles can be loaded via constructor. Do not remove this. This is used to write the relevant informations to the dspx.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPointLayer.Open(System.String)">
+            <summary>
+            This static method is only meant to be used by the deserializer.
+            </summary>
+            <param name="filePath">Path of the file that contains the layer that gets loaded.</param>
+            <returns>The opened layer.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer">
+            <summary>
+            This MapPolygonLayer is able to load itself on deserialization even if the contained DataSet doesn't know how to load the file.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer.#ctor(DotSpatial.Data.IFeatureSet)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer"/> class.
+            </summary>
+            <param name="featureSet">The FeatureSet that contains the layers data.</param>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer.DataSet">
+            <summary>
+            Gets or sets the DataSet.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer.Filename">
+            <summary>
+            Gets or sets the file name of a file based data set. The file name should be the absolute path including
+            the file extension. For data sets coming from a database or a web service, the Filename property is NULL.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer.FilePath">
+            <summary>
+            Gets or sets the current file path. This is the relative path relative to the current project folder.
+            For data sets coming from a database or a web service, the FilePath property is NULL.
+            This property is used when saving source file information to a DSPX project.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer.UseStaticOpenMethod">
+            <summary>
+            Gets a value indicating whether the serializer should use the static open method or the constructor on deserializing the FeatureSet.
+            This should only be true if a FeatureSet was added to the Map. Shapefiles can be loaded via constructor. Do not remove this. This is used to write the relevant informations to the dspx.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MapSelfLoadPolygonLayer.Open(System.String)">
+            <summary>
+            This static method is only meant to be used by the deserializer.
+            </summary>
+            <param name="filePath">Path of the file that contains the layer that gets loaded.</param>
+            <returns>The opened layer.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet">
+            <summary>
+            A dataset that contains data for more more than one layer.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet._groupName">
+            <summary>
+            The name that should be shown as the LegendText of the MapSelfLoadGroup returned by GetLayer.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet._dataSets">
+            <summary>
+            This contains the featuresets and their corresponding style lists that are contained in this MultiLayerDataSet.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet"/> class.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet"/> class that is loaded from the supplied fileName.
+            </summary>
+            <param name="fileName">The string fileName of the MultiLayerDataSet to load.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet.GetLayer">
+            <summary>
+            Gets the IMapSelfLoadLayer that contains all the DataSets as Layers and can be added to the map.
+            </summary>
+            <returns>Null, if there are no DataSets, a MapSelfLoadLayer if there is only 1 DataSet otherwise a MapSelfLoadGroup with layers for the existing DataSets.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet.GetLayer(System.String[])">
+            <summary>
+            Gets the IMapSelfLoadLayer that contains all the DataSets as Layers and can be added to the map.
+            </summary>
+            <param name="layerNames">The names of the layers that should be loaded. If this is null all layers get loaded.</param>
+            <returns>Null, if there are no DataSets, a MapSelfLoadLayer if there is only 1 DataSet otherwise a MapSelfLoadGroup with layers for the existing DataSets.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet.Open(System.String)">
+            <summary>
+            Opens the given file.
+            </summary>
+            <param name="fileName">Name of the file that should be opened.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.MultiLayerDataSet.Reproject(DotSpatial.Projections.ProjectionInfo)">
+            <inheritdoc />
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader">
+            <summary>
+             OgrDatareader provide readonly forward only access to OsGeo data sources accessible though the OGR project.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader"/> class.
+            </summary>
+            <param name="sDataSource">The path of the data source file.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.TranslateStyles(DotSpatial.Controls.IMapFeatureLayer,System.Collections.Generic.IList{System.String})">
+            <summary>
+            Translates the style strings from the list to DotSpatial style categories and adds them to the given layer.
+            </summary>
+            <param name="layer">The layer the styles get added to.</param>
+            <param name="styles">The style strings that should get translated.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Dispose">
+            <summary>
+            This disposes the underlying data source.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetLayers">
+            <summary>
+            Gets the layers of the given file.
+            </summary>
+            <returns>List with the layers of the file.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.AddFeatures(DotSpatial.Data.IFeatureSet,System.Collections.Generic.IList{System.String},OSGeo.OGR.Layer,OSGeo.OGR.FeatureDefn,System.Collections.Generic.IList{DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Column})">
+            <summary>
+            Adds the features for the other file types.
+            </summary>
+            <param name="fs">The featureset the features get added to.</param>
+            <param name="styles">The list the styles get added to.</param>
+            <param name="layer">The layer to get the features from.</param>
+            <param name="ogrFeatureDefinition">The feature definition that contains the field count.</param>
+            <param name="schema">The list of columns used to fill the datarow.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.AddFeatures(System.Collections.Generic.Dictionary{DotSpatial.Data.FeatureType,DotSpatial.Data.IFeatureSet},System.Collections.Generic.Dictionary{DotSpatial.Data.FeatureType,System.Collections.Generic.List{System.String}},OSGeo.OGR.Layer,System.Int32,System.Collections.Generic.IList{DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Column})">
+            <summary>
+            Adds the features for the dxf files.
+            </summary>
+            <param name="fs">The list of featuresets the features get added to.</param>
+            <param name="styles">The list of lists the styles get added to.</param>
+            <param name="layer">The layer to get the features from.</param>
+            <param name="fieldCount">The number of field contained in the features datarow.</param>
+            <param name="schema">The list of columns used to fill the datarow.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetAngle(System.String@)">
+            <summary>
+            Gets the angle.
+            </summary>
+            <param name="style">The style to get the angle from. The parameter part gets removed from it.</param>
+            <returns>0 if no angle was found otherwise the angle that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetColor(System.String@,DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Parameter)">
+            <summary>
+            Gets the color.
+            </summary>
+            <param name="style">The style to get the color from. The parameter part gets removed from it.</param>
+            <param name="parameter">The parameter whose color should be returned.</param>
+            <returns>Black color / white fill color if nothing was found otherwise the color that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetDashStyle(System.String@,System.Boolean@)">
+            <summary>
+            Gets the DashStyle.
+            </summary>
+            <param name="style">The style to get the DashStyle from. The parameter part gets removed from it.</param>
+            <param name="transparent">This out value indicates whether the color should be turned to transparent. This is needed for ogr-pen-1 which is an invisible pen.</param>
+            <returns>Solid if nothing was found otherwise the DashStyle best fitting to the ogr-pen that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetFontName(System.String@)">
+            <summary>
+            Gets the font name.
+            </summary>
+            <param name="style">The style to get the color from. The parameter part gets removed from it.</param>
+            <returns>Null, of no font was found otherwise the name of the font that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetFontSize(System.String@)">
+            <summary>
+            Gets the font size. This gets only the numeric value without the units.
+            </summary>
+            <param name="style">The style to get the font size from. The parameter part gets removed from it.</param>
+            <returns>1 if no font size was found otherwise the font size that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetGeometry(OSGeo.OGR.Feature)">
+            <summary>
+            Gets the features geometry as Wkb.
+            </summary>
+            <param name="feature">Feature whose geometry is returned.</param>
+            <returns>The features geometry.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetNumber(System.String,System.Double)">
+            <summary>
+            Gets the numeric value of the given string. This can only be used for strings that contain a single number.
+            </summary>
+            <param name="numberString">The string whose number should be returned.</param>
+            <param name="defaultValue">The default value that should be returned if nothing was found or number parsing went wrong.</param>
+            <returns>1 if no number was found otherwise the number that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetOrientation(System.String@)">
+            <summary>
+            Gets the orientation of the label.
+            </summary>
+            <param name="style">The style to get the orientation from. The parameter part gets removed from it.</param>
+            <returns>MiddleCenter if nothing was found otherwise the orientation that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetPattern(System.String@)">
+            <summary>
+            Gets the pattern. This gets only the numeric values without the units.
+            </summary>
+            <param name="style">The style to get the pattern from. The parameter part gets removed from it.</param>
+            <returns>Null if nothing was found otherwise the pattern values.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetProjectionInfo(OSGeo.OGR.Layer)">
+            <summary>
+            Adds the projection info of the OGR layer to the FeatureSet.
+            </summary>
+            <param name="layer">The layer that is used to create the FeatureSet.</param>
+            <returns>Null on error otherwise the ProjectionInfo object that contains the data of the layers proj4 string.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetSubString(System.String@,System.String)">
+            <summary>
+            Gets the substring of the given parameter followed by a comma.
+            </summary>
+            <param name="style">Style to get the substring from.</param>
+            <param name="parameterName">The name of the parameter.</param>
+            <returns>An empty string if nothing was found otherwise the substring that was extracted.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetToolNames(System.String)">
+            <summary>
+            Gets the names of the tools contained in the given style together with the corresponding styles parts.
+            </summary>
+            <param name="style">The style that gets separated.</param>
+            <returns>A dictionary that contains all the tool names found in the style together with the substring belonging to the tool.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetValue(System.Int32,System.Collections.Generic.IList{DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Column},OSGeo.OGR.Feature)">
+            <summary>
+            Gets the value of the field.
+            </summary>
+            <param name="i">Index of the field.</param>
+            <param name="schema">Schema that contains the field type.</param>
+            <param name="feature">The feature whose value gets returned.</param>
+            <returns>The field value as object.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetValue(System.String@,System.String)">
+            <summary>
+            Gets the value of the parameter with the given name. The name must contain the : at the end.
+            </summary>
+            <param name="style">The style that gets searched. The parameter part gets removed from it.</param>
+            <param name="parameterName">The name of the paramater whose value should be returned.</param>
+            <returns>Null if nothing could be found otherwise the value that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetWidth(System.String@)">
+            <summary>
+            Gets the width. This gets only the numeric value without the units.
+            </summary>
+            <param name="style">The style to get the width from. The parameter part gets removed from it.</param>
+            <returns>1 if no width was found otherwise the width that was found.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.RemoveText(System.String)">
+            <summary>
+            Removes all the unused parameters from Label styles.
+            </summary>
+            <param name="style">Style that should be cleaned.</param>
+            <returns>The whole style for non label styles otherwise the cleaned style.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.TranslateLineStyle(DotSpatial.Symbology.LineScheme,System.String)">
+            <summary>
+            Translates the given style as line style and adds it to the given line scheme.
+            </summary>
+            <param name="scheme">The scheme the style gets added to.</param>
+            <param name="style">The style that gets translated.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.TranslateOgrType(OSGeo.OGR.FieldType)">
+            <summary>
+            Translates the given ogrType to the corresponding System.Type.
+            </summary>
+            <param name="ogrType">The ogrType to get the System.Type for.</param>
+            <returns>The type that corresponds to the given ogrType.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.TranslatePointStyle(DotSpatial.Symbology.PointScheme,DotSpatial.Symbology.ILabelScheme,System.String)">
+            <summary>
+            Translates the given style as point style and adds it to the given point scheme.
+            </summary>
+            <param name="scheme">The scheme the style gets added to.</param>
+            <param name="labelScheme">The scheme the label definitions gets added to.</param>
+            <param name="style">The style that gets translated.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.TranslatePolygonStyle(DotSpatial.Symbology.PolygonScheme,System.String)">
+            <summary>
+            Translates the given style as polygon style and adds it to the given polygon scheme.
+            </summary>
+            <param name="scheme">The scheme the style gets added to.</param>
+            <param name="style">The style that gets translated.</param>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetDxfLayers">
+            <summary>
+            Gets the layers of the given dxf file.
+            </summary>
+            <returns>The list of featuresets and styles contained in this file.</returns>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.GetOtherLayers">
+            <summary>
+            Gets the layers of the given file.
+            </summary>
+            <returns>The list of featuresets contained in this file.</returns>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Parameters">
+            <summary>
+            This contains the color parameters that can be found in a style string.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Parameter.#ctor(System.String,System.Drawing.Color)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Parameter"/> class.
+            </summary>
+            <param name="name">Name of the parameter.</param>
+            <param name="defaultColor">The default color that should be assigned if the parameter can't be found.</param>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Parameter.DefaultColor">
+            <summary>
+            Gets the default color that should be assigned if the parameter can't be found.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.OgrDataReader.Parameter.Name">
+            <summary>
+            Gets the name of the parameter. This contains some letters and the : indicative for the parameter according to http://www.gdal.org/ogr_feature_style.html.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Data.Rasters.GdalExtension.OgrDataProvider">
+            <summary>
+            OgrDataProvider
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.OgrDataProvider.Description">
+            <summary>
+            Gets the description of the Vector Provider.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.OgrDataProvider.DialogReadFilter">
+            <summary>
+            Gets the dialog filter to use when opening a file
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.OgrDataProvider.DialogWriteFilter">
+            <summary>
+            Gets the dialog filter to use when saving to a file.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.OgrDataProvider.Name">
+            <summary>
+            Gets the name of the provider.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Data.Rasters.GdalExtension.OgrDataProvider.ProgressHandler">
+            <summary>
+            Gets or sets the progress handler that gets updated with progress information.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Data.Rasters.GdalExtension.OgrDataProvider.DotSpatial#Data#IDataProvider#Open(System.String)">
+            <summary>
+            Opens the given file.
+            </summary>
+            <param name="fileName">File t hat gets opened.</param>
+            <returns>Content of the file as data set.</returns>
+        </member>
+    </members>
+</doc>

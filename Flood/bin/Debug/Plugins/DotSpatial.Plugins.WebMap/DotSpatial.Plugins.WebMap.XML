@@ -1,0 +1,807 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotSpatial.Plugins.WebMap</name>
+    </assembly>
+    <members>
+        <member name="T:DotSpatial.Plugins.WebMap.BrutileServiceProvider">
+            <summary>
+            Brutile service provider.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.BrutileServiceProvider.#ctor(System.String,BruTile.ITileSource,BruTile.Cache.ITileCache{System.Byte[]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.BrutileServiceProvider"/> class.
+            </summary>
+            <param name="name">The name of the service provider.</param>
+            <param name="tileSource">The tile cache.</param>
+            <param name="tileCache">The tile source.</param>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.BrutileServiceProvider.TileCache">
+            <summary>
+            Gets or sets the tile cache.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.BrutileServiceProvider.TileSource">
+            <summary>
+            Gets or sets the tile source.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.BrutileServiceProvider.GetBitmap(System.Int32,System.Int32,GeoAPI.Geometries.Envelope,System.Int32)">
+            <summary>
+            Gets a bitmap.
+            </summary>
+            <param name="x">The tile number in x direction.</param>
+            <param name="y">The tile number in y direction.</param>
+            <param name="envelope">The envelope for which to get the tiles.</param>
+            <param name="zoom">The zoom level for which to get the tile.</param>
+            <returns>Null on error, otherwise the resulting bitmap.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.BrutileServiceProvider.ToBrutileExtent(GeoAPI.Geometries.Envelope)">
+            <summary>
+            Converts the envelope to a BruTile extent.
+            </summary>
+            <param name="extent">Envelope to convert.</param>
+            <returns>The resulting BruTile extent.</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.Configuration.ServiceProviderElement">
+            <summary>
+            Represents a service provider configuration element.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Configuration.ServiceProviderElement.Ignore">
+            <summary>
+            Gets or sets a value indicating whether the provider should be ignored.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Configuration.ServiceProviderElement.Key">
+            <summary>
+            Gets or sets the key.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Configuration.ServiceProviderElement.Url">
+            <summary>
+            Gets or sets the Url.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.Configuration.ServiceProviderElementCollection">
+            <summary>
+            A collection for ServiceProviderElements.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Configuration.ServiceProviderElementCollection.CreateNewElement">
+            <summary>
+            Creates a new ServiceProviderElement.
+            </summary>
+            <returns>The created ServiceProviderElement</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Configuration.ServiceProviderElementCollection.GetElementKey(System.Configuration.ConfigurationElement)">
+            <summary>
+            Gets the key of the given element.
+            </summary>
+            <param name="element">Element to get the key from.</param>
+            <returns>The key.</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.Configuration.WebMapConfigurationSection">
+            <summary>
+            The WebMap configuration section.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Configuration.WebMapConfigurationSection.Services">
+            <summary>
+            Gets the services.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.OtherServiceProvider">
+            <summary>
+            This can be used to work with services other than the ones already defined.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.OtherServiceProvider.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.OtherServiceProvider"/> class.
+            </summary>
+            <param name="name">Name of the service provider.</param>
+            <param name="url">Url of the service provider.</param>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.OtherServiceProvider.NeedConfigure">
+            <inheritdoc />
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.OtherServiceProvider.GetBitmap(System.Int32,System.Int32,GeoAPI.Geometries.Envelope,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.BingAerial">
+            <summary>
+              Looks up a localized string similar to Bing Aerial Map.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.BingHybrid">
+            <summary>
+              Looks up a localized string similar to Bing Hybrid Map.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.BingRoads">
+            <summary>
+              Looks up a localized string similar to Bing Street Map.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Cascaded">
+            <summary>
+              Looks up a localized string similar to Cascaded: .
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Error">
+            <summary>
+              Looks up a localized string similar to Error.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.EsriHydroBaseMap">
+            <summary>
+              Looks up a localized string similar to Esri Hydro Base Map.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.EsriWorldImagery">
+            <summary>
+              Looks up a localized string similar to Esri World Imagery.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.EsriWorldStreetMap">
+            <summary>
+              Looks up a localized string similar to Esri World Street Map.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.EsriWorldTopo">
+            <summary>
+              Looks up a localized string similar to Esri World Topo.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.FixedHeight">
+            <summary>
+              Looks up a localized string similar to Fixed Height: .
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.FixedWidth">
+            <summary>
+              Looks up a localized string similar to Fixed Width: .
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.GoogleMap">
+            <summary>
+              Looks up a localized string similar to Google Map.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.GoogleTerrain">
+            <summary>
+              Looks up a localized string similar to Google Terrain.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Legend_Title">
+            <summary>
+              Looks up a localized string similar to Online Basemap.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.nodata">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.None">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.NoSubsets">
+            <summary>
+              Looks up a localized string similar to NoSubsets: .
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Opacity_Box_Text">
+            <summary>
+              Looks up a localized string similar to Opacity: .
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Opacity_Box_ToolTip">
+            <summary>
+              Looks up a localized string similar to Change opacity of the basemap layer..
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Opaque">
+            <summary>
+              Looks up a localized string similar to Opaque: .
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.OpenStreetMap">
+            <summary>
+              Looks up a localized string similar to Open Street Map.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Panel_Name">
+            <summary>
+              Looks up a localized string similar to Online Basemap.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Queryable">
+            <summary>
+              Looks up a localized string similar to Queryable: .
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.SelectCrsToView">
+            <summary>
+              Looks up a localized string similar to Select CRS to view..
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.SelectLayerToView">
+            <summary>
+              Looks up a localized string similar to Select layer to view..
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.SelectServerToView">
+            <summary>
+              Looks up a localized string similar to Select server to view..
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.Service_Box_ToolTip">
+            <summary>
+              Looks up a localized string similar to Change online basemap service..
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.UnableToReadCapabilities">
+            <summary>
+              Looks up a localized string similar to Unable to read capabilities: {0}.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.UnsupportedCrs">
+            <summary>
+              Looks up a localized string similar to Unsupported CRS. Select another CRS..
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Properties.Resources.WMSMap">
+            <summary>
+              Looks up a localized string similar to WMS.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.ServiceProvider">
+            <summary>
+            The base implementation for service providers.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.ServiceProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.ServiceProvider"/> class.
+            </summary>
+            <param name="name">Name of the service provider.</param>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.ServiceProvider.Configure">
+            <summary>
+            Gets or sets
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.ServiceProvider.Name">
+            <summary>
+            Gets the name of the service provider.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.ServiceProvider.NeedConfigure">
+            <summary>
+            Gets or sets a value indicating whether configuration is needed.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.ServiceProvider.GetBitmap(System.Int32,System.Int32,GeoAPI.Geometries.Envelope,System.Int32)">
+            <summary>
+            Gets a bitmap.
+            </summary>
+            <param name="x">The tile number in x direction.</param>
+            <param name="y">The tile number in y direction.</param>
+            <param name="envelope">The envelope for which to get the tiles.</param>
+            <param name="zoom">The zoom level for which to get the tile.</param>
+            <returns>Null on error, otherwise the resulting bitmap.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.ServiceProvider.ToString">
+            <summary>
+            Returns the name of the service provider.
+            </summary>
+            <returns>The service provider name.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.ServiceProvider.ExceptionToBitmap(System.Exception,System.Int32,System.Int32)">
+            <summary>
+            Takes the given exception an prints it to bitmap.
+            </summary>
+            <param name="ex">Exeption that should be printed.</param>
+            <param name="width">Width of the bitmap.</param>
+            <param name="height">Height of the bitmap.</param>
+            <returns>The bitmap with the exception.</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.ServiceProviderFactory">
+            <summary>
+            The service provider factory can be used to create service providers.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.ServiceProviderFactory.Create(System.String,System.String)">
+            <summary>
+            Creates a new service provider.
+            </summary>
+            <param name="name">Name of the service provider that should be crreated.</param>
+            <param name="url">Url for the service provider.</param>
+            <returns>The created service provider.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.ServiceProviderFactory.GetDefaultServiceProviders">
+            <summary>
+            Gets the default service providers.
+            </summary>
+            <returns>An IEnumerable of the default service providers.</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.Tiling.TileCalculator">
+            <summary>
+            Class that is used for tile calculation.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.EarthRadiusKms">
+            <summary>
+            The earth radius in kms.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MaxLatitude">
+            <summary>
+            The maximal latitude.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MaxLongitude">
+            <summary>
+            The maximal longitude.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MaxWebMercX">
+            <summary>
+            The maximal webmercator X.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MaxWebMercY">
+            <summary>
+            The maximal webmercator Y.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MinLatitude">
+            <summary>
+            The minimal latitude.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MinLongitude">
+            <summary>
+            The minimal longitude.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MinWebMercX">
+            <summary>
+            The minimal webmercator X.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MinWebMercY">
+            <summary>
+            The minimal webmercator Y.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.Clip(System.Double,System.Double,System.Double)">
+            <summary>
+            Clips a number to the specified minimum and maximum values.
+            </summary>
+            <param name="n">The number to clip.</param>
+            <param name="minValue">Minimum allowable value.</param>
+            <param name="maxValue">Maximum allowable value.</param>
+            <returns>The clipped value.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.DetermineZoomLevel(GeoAPI.Geometries.Envelope,System.Drawing.Rectangle)">
+            <summary>
+            Determines the zoom level from which the tiles should be gotten.
+            </summary>
+            <param name="envelope">Envelope of the region the tiles are needed for.</param>
+            <param name="rectangle">Screen rectangle used for zoom level calculation.</param>
+            <returns>The zoom level.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.GroundResolution(System.Double,System.Int32)">
+            <summary>
+            Determines the ground resolution (in meters per pixel) at a specified latitude and level of detail.
+            </summary>
+            <param name="latitude">Latitude (in degrees) at which to measure the ground resolution.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail).</param>
+            <returns>The ground resolution, in meters per pixel.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.LatLongToPixelXy(System.Double,System.Double,System.Int32)">
+            <summary>
+            Converts a point from latitude/longitude WGS-84 coordinates (in degrees)
+            into pixel XY coordinates at a specified level of detail.
+            </summary>
+            <param name="latitude">Latitude of the point, in degrees.</param>
+            <param name="longitude">Longitude of the point, in degrees.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail).</param>
+            <returns>Pixel XY coordinate</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.LatLongToPixelXy(GeoAPI.Geometries.Coordinate,System.Int32)">
+            <summary>
+            Converts a point from latitude/longitude WGS-84 coordinates (in degrees)
+            into pixel XY coordinates at a specified level of detail.
+            </summary>
+            <param name="coord">Latitude, Longitude Coordinate of the point, in degrees.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail). </param>
+            <returns>Pixel XY coordinate.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.LatLongToTileXy(GeoAPI.Geometries.Coordinate,System.Int32)">
+            <summary>
+            Converts a WGS-84 Lat/Long coordinate to the tile XY of the tile containing that point at the given levelOfDetail.
+            </summary>
+            <param name="coord">WGS-84 Lat/Long</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail).</param>
+            <returns>Tile XY Point</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MapScale(System.Double,System.Int32,System.Int32)">
+            <summary>
+            Determines the map scale at a specified latitude, level of detail, and screen resolution.
+            </summary>
+            <param name="latitude">Latitude (in degrees) at which to measure the map scale.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail).</param>
+            <param name="screenDpi">Resolution of the screen, in dots per inch.</param>
+            <returns>The map scale, expressed as the denominator N of the ratio 1 : N.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.MapSize(System.Int32)">
+            <summary>
+            Determines the map width and height (in pixels) at a specified level of detail.
+            </summary>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail).</param>
+            <returns>The map width and height in pixels.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.PixelXyToLatLong(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts a pixel from pixel XY coordinates at a specified level of detail into latitude/longitude WGS-84 coordinates (in degrees).
+            </summary>
+            <param name="pixelX">X coordinate of the point, in pixels.</param>
+            <param name="pixelY">Y coordinates of the point, in pixels.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail).</param>
+            <returns>The resulting WGS84 coordinate.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.PixelXyToTileXy(System.Int32,System.Int32)">
+            <summary>
+            Converts pixel XY coordinates into tile XY coordinates of the tile containing the specified pixel.
+            </summary>
+            <param name="pixelX">Pixel X coordinate.</param>
+            <param name="pixelY">Pixel Y coordinate.</param>
+            <returns>Tile XY coordinate.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.PixelXyToTileXy(NetTopologySuite.Geometries.Point)">
+            <summary>
+            Converts pixel XY coordinates into tile XY coordinates of the tile containing the specified pixel.
+            </summary>
+            <param name="point">Pixel X,Y point.</param>
+            <returns>Tile XY coordinate</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.StitchTiles(System.Drawing.Bitmap[0:,0:],System.Int16)">
+            <summary>
+            Takes a 2-dimensional array of tiles and stitches it into a single Bitmap for display on the Map.
+            </summary>
+            <param name="tiles">2-dimensional array of tiles, [x by y]</param>
+            <param name="opacity">Opacity of final image</param>
+            <returns>Bitmap of the tiles stitched together</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.TileXyToBingQuadKey(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Converts tile XY coordinates into a QuadKey at a specified level of detail.
+            </summary>
+            <param name="tileX">Tile X coordinate.</param>
+            <param name="tileY">Tile Y coordinate.</param>
+            <param name="levelOfDetail">Level of detail, from 1 (lowest detail) to 23 (highest detail).</param>
+            <returns>A string containing the Bing QuadKey.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.TileXyToBottomRightPixelXy(System.Int32,System.Int32)">
+            <summary>
+            Converts tile XY coordinates into pixel XY coordinates of the bottom-right pixel of the specified tile.
+            </summary>
+            <param name="tileX">Tile X coordinate.</param>
+            <param name="tileY">Tile Y coordinate.</param>
+            <returns>The coordinate of the bottom-right pixel of the tile.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileCalculator.TileXyToTopLeftPixelXy(System.Int32,System.Int32)">
+            <summary>
+            Converts tile XY coordinates into pixel XY coordinates of the upper-left pixel of the specified tile.
+            </summary>
+            <param name="tileX">Tile X coordinate.</param>
+            <param name="tileY">Tile Y coordinate.</param>
+            <returns>The coordinate of the upper-left pixel of the tile.</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.Tiling.TileManager">
+            <summary>
+            The tile manager manages the way tiles are gotten.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileManager.#ctor(DotSpatial.Plugins.WebMap.ServiceProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.Tiling.TileManager"/> class.
+            </summary>
+            <param name="serviceProvider">The service provider that gets the tiles.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileManager.GetTiles(GeoAPI.Geometries.Envelope,System.Drawing.Rectangle,System.ComponentModel.BackgroundWorker)">
+            <summary>
+            Gets the tiles.
+            </summary>
+            <param name="envelope">Envelope that indicates for which region the tiles are needed.</param>
+            <param name="bounds">Bounds needed for zoom level calculation.</param>
+            <param name="bw">The background worker.</param>
+            <returns>The tiles needed for the envelope.</returns>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.TileManager.GetTileEnvelope(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get tile envelope in WGS-84 coordinates.
+            </summary>
+            <param name="x">x index</param>
+            <param name="y">y index</param>
+            <param name="zoom">zoom</param>
+            <returns>Envelope in WGS-84</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.Tiling.Tiles">
+            <summary>
+            Tiles can be used to return the tiles that the provider returned.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.Tiling.Tiles.#ctor(System.Drawing.Bitmap[0:,0:],GeoAPI.Geometries.Envelope,GeoAPI.Geometries.Envelope)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.Tiling.Tiles"/> class.
+            </summary>
+            <param name="bitmaps">An array of bitmaps.</param>
+            <param name="topLeftTile">The top left tile.</param>
+            <param name="bottomRightTile">The bottom right tile.</param>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Tiling.Tiles.Bitmaps">
+            <summary>
+            Gets an array of bitmaps.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Tiling.Tiles.BottomRightTile">
+            <summary>
+            Gets the bottom right tile.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.Tiling.Tiles.TopLeftTile">
+            <summary>
+            Gets the top left tile.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.WMS.RequestHelper">
+            <summary>
+            Helper class for fetching images.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.RequestHelper.FetchImage(System.Uri,System.Net.ICredentials)">
+            <summary>
+            Fetches the image from the given uri.
+            </summary>
+            <param name="uri">Uri to get the image from.</param>
+            <param name="credentials">Credentials needed for login.</param>
+            <returns>byte array width the gotten image data.</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.WMS.WmsRequest">
+            <summary>
+            WmsRequest
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsRequest.#ctor(System.Uri,BruTile.TileSchema,System.Int32,System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.WMS.WmsRequest"/> class.
+            </summary>
+            <param name="baseUrl">The base url.</param>
+            <param name="schema">The tile schema.</param>
+            <param name="tileWidth">The width of the requested tiles.</param>
+            <param name="tileHeight">The height of the requested tiles.</param>
+            <param name="layers">The layers.</param>
+            <param name="styles">The styles.</param>
+            <param name="customParameters">The custom parameters.</param>
+            <param name="version">The version.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsRequest.GetUri(BruTile.TileInfo)">
+            <summary>
+            Generates a URI at which to get the data for a tile.
+            </summary>
+            <param name="info">Information about a tile.</param>
+            <returns>The URI at which to get the data for the specified tile.</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.WMS.WmsServiceProvider">
+            <summary>
+            WMS service provider.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsServiceProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.WMS.WmsServiceProvider"/> class.
+            </summary>
+            <param name="name">Name of the service provider.</param>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsServiceProvider.NeedConfigure">
+            <summary>
+            Gets a value indicating whether configuration is needed.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsServiceProvider.GetBitmap(System.Int32,System.Int32,GeoAPI.Geometries.Envelope,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.WMS.WmsServerParameters">
+            <summary>
+            WMS server parameters.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsServerParameters.#ctor(DotSpatial.Plugins.WebMap.WMS.WmsInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.WMS.WmsServerParameters"/> class.
+            </summary>
+            <param name="data">The WmsInfo needed to initialize this object.</param>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsServerParameters.WmsInfo">
+            <summary>
+            Gets the WmsInfo.
+            </summary>
+        </member>
+        <member name="F:DotSpatial.Plugins.WebMap.WMS.WmsServerParameters.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsServerParameters.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsServerParameters.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.WMS.WmsInfo">
+            <summary>
+            Wms info.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsInfo.#ctor(System.String,BruTile.Wms.WmsCapabilities,BruTile.Wms.Layer,System.Collections.Generic.Dictionary{System.String,System.String},System.String,DotSpatial.Projections.ProjectionInfo,System.String,System.Net.NetworkCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.WMS.WmsInfo"/> class.
+            </summary>
+            <param name="serverUrl">Url of the WMS server.</param>
+            <param name="wmsCapabilities">The WmsCapabilities.</param>
+            <param name="layer">The layer.</param>
+            <param name="customParameters">The custom parameters.</param>
+            <param name="crs">The Crs.</param>
+            <param name="projectionInfo">The CrsProjectionInfo.</param>
+            <param name="style">The style.</param>
+            <param name="credentials">Credentials for authentication.</param>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.Credentials">
+            <summary>
+            Gets the credentials for authentication.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.Crs">
+            <summary>
+            Gets the Crs.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.CrsProjectionInfo">
+            <summary>
+            Gets the CrsProjectionInfo.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.CustomParameters">
+            <summary>
+            Gets the custom parameters.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.Layer">
+            <summary>
+            Gets the layer.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.ServerUrl">
+            <summary>
+            Gets the server Url.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.Style">
+            <summary>
+            Gets the style.
+            </summary>
+        </member>
+        <member name="P:DotSpatial.Plugins.WebMap.WMS.WmsInfo.WmsCapabilities">
+            <summary>
+            Gets the WmsCapabilities.
+            </summary>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.WMS.WmsTileSource">
+            <summary>
+            A tile source for wms services.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WMS.WmsTileSource.Create(DotSpatial.Plugins.WebMap.WMS.WmsInfo)">
+            <summary>
+            Creates a new WmsTileSource
+            </summary>
+            <param name="info">WmsInfo with the data needed for creation.</param>
+            <returns>The created WmsTileSource</returns>
+        </member>
+        <member name="T:DotSpatial.Plugins.WebMap.WebMapPlugin">
+            <summary>
+            The WebMapPlugin can be used to load web based layers.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:DotSpatial.Plugins.WebMap.WebMapPlugin"/> class.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.Activate">
+            <summary>
+            Initialize the DotSpatial plugin
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.Deactivate">
+            <summary>
+            Fires when the plugin should become inactive
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.ChangeBasemapOpacity">
+            <summary>
+            Changes the opacity of the current basemap image and invalidates the map.
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.OpacitySelected(System.Object,DotSpatial.Controls.Header.SelectedValueChangedEventArgs)">
+            <summary>
+            Changes the Maps opacity to the selected opacity.
+            </summary>
+            <param name="sender">Sender that raised the event.</param>
+            <param name="e">The event args.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.RemoveBasemapLayer(DotSpatial.Controls.IMapLayer)">
+            <summary>
+            Finds and removes the online basemap layer.
+            </summary>
+            <param name="layer">Name of the online basemap layer.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.SerializationManagerDeserializing(System.Object,DotSpatial.Controls.SerializingEventArgs)">
+            <summary>
+            Deserializes the WebMap settings and loads the corresponding basemap.
+            </summary>
+            <param name="sender">Sender that raised the event.</param>
+            <param name="e">The event args.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.SerializationManagerNewProject(System.Object,DotSpatial.Controls.SerializingEventArgs)">
+            <summary>
+            Deactivates the WebMap when a new project is created.
+            </summary>
+            <param name="sender">Sender that raised the event.</param>
+            <param name="e">The event args.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.SerializationManagerSerializing(System.Object,DotSpatial.Controls.SerializingEventArgs)">
+            <summary>
+            Serializes the WebMap settings.
+            </summary>
+            <param name="sender">Sender that raised the event.</param>
+            <param name="e">The event args.</param>
+        </member>
+        <member name="M:DotSpatial.Plugins.WebMap.WebMapPlugin.UpdateStichedBasemap(System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Main method of this plugin: gets the tiles from the TileManager, stitches them together, and adds the layer to the map.
+            </summary>
+            <param name="e">The event args.</param>
+        </member>
+    </members>
+</doc>

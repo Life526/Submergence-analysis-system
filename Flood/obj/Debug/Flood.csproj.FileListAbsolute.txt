@@ -1,0 +1,10 @@
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\bin\Debug\Flood.exe.config
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\obj\Debug\Flood.Form1.resources
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\obj\Debug\Flood.Properties.Resources.resources
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\obj\Debug\Flood.csproj.GenerateResource.Cache
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\bin\Debug\Flood.exe
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\bin\Debug\Flood.pdb
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\bin\Debug\IrisSkin2.dll
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\obj\Debug\Flood.exe
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\obj\Debug\Flood.pdb
+C:\Users\dell-01\Desktop\ShiXi\Procedure\Flood\Flood\obj\Debug\Flood.csprojResolveAssemblyReference.cache
