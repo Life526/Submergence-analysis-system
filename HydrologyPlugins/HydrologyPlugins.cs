@@ -14,6 +14,7 @@ namespace HydrologyPlugins
     {
         public override void Activate()
         {
+            AddMenu();
             base.Activate();
         }
 
@@ -40,31 +41,41 @@ namespace HydrologyPlugins
             App.HeaderControl.Add(new SimpleActionItem(HydroMenuKey, "Submergence Analysis", Func_Submergence));//位于哪个Root menu之下，标题，以及菜单响应方法。
         }
 
+        //Fill Function
         private void Func_Fill(object sender, EventArgs e)
         {
-
+            Fill_Form Fill_Frm = new Fill_Form(App.Map);
+            Fill_Frm.ShowDialog();
         }
 
+        //Flow Direction Function
         private void Func_FlowDir(object sender, EventArgs e)
         {
-
+            FlowDir_Frm Fd_Frm=new FlowDir_Frm(App.Map);
+            Fd_Frm.ShowDialog();
         }
 
+        //Flow Accumulation Function
         private void Func_FlowAccu(object sender, EventArgs e)
         {
-
+            FlowAcc_Frm Fa_Frm = new FlowAcc_Frm(App.Map);
+            Fa_Frm.ShowDialog();
         }
 
+        //Snap Pour Point Function 
         private void Func_Snap(object sender, EventArgs e)
         {
-
+            Snap_pour_point spp = new Snap_pour_point(App.Map);
+            spp.ShowDialog();
         }
 
+        //Connection Function
         private void Func_Connect(object sender, EventArgs e)
         {
 
         }
 
+        //Submergence Function
         private void Func_Submergence(object sender, EventArgs e)
         {
 

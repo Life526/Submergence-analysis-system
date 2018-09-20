@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\HydrologyPlugins\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -33,14 +33,31 @@
     <Reference Include="DotSpatial.Controls">
       <HintPath>..\Flood\bin\Debug\DotSpatial.Controls.dll</HintPath>
     </Reference>
+    <Reference Include="DotSpatial.Data">
+      <HintPath>..\Flood\bin\Debug\DotSpatial.Data.dll</HintPath>
+    </Reference>
     <Reference Include="DotSpatial.Extensions">
       <HintPath>..\Flood\bin\Debug\DotSpatial.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.GeoAPI, Version=1.7.4.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Flood\bin\Debug\DotSpatial.GeoAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.NetTopologySuite, Version=1.14.4.0, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Flood\bin\Debug\DotSpatial.NetTopologySuite.dll</HintPath>
+    </Reference>
+    <Reference Include="DotSpatial.Projections">
+      <HintPath>..\Flood\bin\Debug\DotSpatial.Projections.dll</HintPath>
     </Reference>
     <Reference Include="DotSpatial.Symbology">
       <HintPath>..\Flood\bin\Debug\DotSpatial.Symbology.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,8 +65,74 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fill_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fill_Form.Designer.cs">
+      <DependentUpon>Fill_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlowAcc.cs" />
+    <Compile Include="FlowAcc_Thread.cs" />
+    <Compile Include="FlowDir.cs" />
+    <Compile Include="FlowAcc_Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlowAcc_Frm.Designer.cs">
+      <DependentUpon>FlowAcc_Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlowDir_Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlowDir_Frm.Designer.cs">
+      <DependentUpon>FlowDir_Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlowDir_Thread.cs" />
     <Compile Include="HydrologyPlugins.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RasterPixel.cs" />
+    <Compile Include="RasterPixel_2.cs" />
+    <Compile Include="Snap pour point.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snap pour point.Designer.cs">
+      <DependentUpon>Snap pour point.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SnapPourPoint.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fill_Form.resx">
+      <DependentUpon>Fill_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlowAcc_Frm.resx">
+      <DependentUpon>FlowAcc_Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlowDir_Frm.resx">
+      <DependentUpon>FlowDir_Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snap pour point.resx">
+      <DependentUpon>Snap pour point.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\FileSelect.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\FileSelect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\FileSele_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\Error.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

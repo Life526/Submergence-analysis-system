@@ -67,9 +67,10 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(873, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(44, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -77,7 +78,7 @@
             // 
             this.panel1.Controls.Add(this.spatialToolStripPanel1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(873, 61);
             this.panel1.TabIndex = 1;
@@ -109,14 +110,14 @@
             this.map1.ProjectionModeReproject = DotSpatial.Controls.ActionMode.Prompt;
             this.map1.RedrawLayersWhileResizing = false;
             this.map1.SelectionEnabled = true;
-            this.map1.Size = new System.Drawing.Size(564, 403);
+            this.map1.Size = new System.Drawing.Size(564, 431);
             this.map1.TabIndex = 0;
             this.map1.ZoomOutFartherThanMaxExtent = false;
             // 
             // legend1
             // 
             this.legend1.BackColor = System.Drawing.Color.White;
-            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 277, 403);
+            this.legend1.ControlRectangle = new System.Drawing.Rectangle(0, 0, 277, 431);
             this.legend1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.legend1.DocumentRectangle = new System.Drawing.Rectangle(0, 0, 187, 428);
             this.legend1.HorizontalScrollEnabled = true;
@@ -129,7 +130,7 @@
             this.legend1.ResetOnResize = false;
             this.legend1.SelectionFontColor = System.Drawing.Color.Black;
             this.legend1.SelectionHighlight = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(238)))), ((int)(((byte)(252)))));
-            this.legend1.Size = new System.Drawing.Size(277, 403);
+            this.legend1.Size = new System.Drawing.Size(277, 431);
             this.legend1.TabIndex = 0;
             this.legend1.Text = "legend1";
             this.legend1.UseLegendForSelection = true;
@@ -148,7 +149,7 @@
             // spatialDockManager1
             // 
             this.spatialDockManager1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spatialDockManager1.Location = new System.Drawing.Point(0, 89);
+            this.spatialDockManager1.Location = new System.Drawing.Point(0, 61);
             this.spatialDockManager1.Name = "spatialDockManager1";
             // 
             // spatialDockManager1.Panel1
@@ -158,7 +159,7 @@
             // spatialDockManager1.Panel2
             // 
             this.spatialDockManager1.Panel2.Controls.Add(this.tabControl2);
-            this.spatialDockManager1.Size = new System.Drawing.Size(873, 435);
+            this.spatialDockManager1.Size = new System.Drawing.Size(873, 463);
             this.spatialDockManager1.SplitterDistance = 291;
             this.spatialDockManager1.TabControl1 = this.tabControl1;
             this.spatialDockManager1.TabControl2 = this.tabControl2;
@@ -171,7 +172,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(291, 435);
+            this.tabControl1.Size = new System.Drawing.Size(291, 463);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -180,7 +181,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(283, 409);
+            this.tabPage1.Size = new System.Drawing.Size(283, 437);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Legend";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -192,7 +193,7 @@
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(578, 435);
+            this.tabControl2.Size = new System.Drawing.Size(578, 463);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage2
@@ -201,7 +202,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(570, 409);
+            this.tabPage2.Size = new System.Drawing.Size(570, 437);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Map";
             this.tabPage2.UseVisualStyleBackColor = true;
